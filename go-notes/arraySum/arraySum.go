@@ -1,8 +1,8 @@
-package main
+package arraySum
 
 import "fmt"
 
-func ArraySum(s [] int, index int) int {
+func ArraySum(s []int, index int) int {
 	length := len(s)
 	if index == length-1 {
 		return s[index]

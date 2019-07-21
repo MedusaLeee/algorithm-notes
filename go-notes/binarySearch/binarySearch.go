@@ -1,13 +1,13 @@
-package main
+package binarySearch
 
 import "fmt"
 
-func binarySearch(s []int, k int)  int {
+func binarySearch(s []int, k int) int {
 	low := 0
-	high := len(s) -1
-	for low < high{
+	high := len(s) - 1
+	for low < high {
 
-		var mid int = (low + high) /2
+		var mid int = (low + high) / 2
 		guess := s[mid]
 		if guess == k {
 			return mid
@@ -21,8 +21,8 @@ func binarySearch(s []int, k int)  int {
 	return -1
 }
 
-func main()  {
-	arr := []int{1,2,3,4,5}
+func main() {
+	arr := []int{1, 2, 3, 4, 5}
 	result := binarySearch(arr, 3)
 	fmt.Println(result)
 	result = binarySearch(arr, 4)
