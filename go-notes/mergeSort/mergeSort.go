@@ -51,12 +51,12 @@ func Merge(arr []int, lo int, mid int, hi int) {
 }
 
 func MergeSort(arr []int, lo int, hi int) {
-	if lo == hi {
+	if hi-lo <= 1 {
 		return
 	}
 	fmt.Println("33---", lo, hi)
 	mid := (lo + hi) / 2
-	fmt.Println("----", mid)
+	fmt.Println("----", mid, arr)
 	MergeSort(arr, lo, mid)
 	MergeSort(arr, mid+1, hi)
 	Merge(arr, lo, mid-1, hi)
