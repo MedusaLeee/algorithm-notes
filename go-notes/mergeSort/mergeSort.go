@@ -50,3 +50,58 @@ func MergeSort(arr []int, lo int, hi int) {
 		Merge(arr, lo, mid, hi)
 	}
 }
+
+// 2.2.17
+type ListNode struct {
+	Val  int
+	Next *ListNode
+}
+
+// 快慢指针 找到中间点，然后分割
+func GetMid(head *ListNode) *ListNode {
+	if head == nil {
+		return head
+	}
+	slow, fast := head, head
+	for fast.Next != nil && fast.Next.Next != nil {
+		slow = slow.Next
+		fast = fast.Next.Next
+	}
+	return slow
+}
+
+// 合并排好序的链表
+func ListNodeMerge(a *ListNode, b *ListNode) *ListNode {
+	zeroNode := &ListNode{-1, nil}
+	curr := zeroNode
+	for a != nil && b != nil {
+		if a.Val <= b.Val {
+			curr.Next = a
+			a = a.Next
+		} else {
+			curr.Next = b
+			b = b.Next
+		}
+		curr = curr.Next
+	}
+	if a == nil {
+		curr.Next = b
+	}
+	if b == nil {
+		curr.Next = a
+	}
+	return zeroNode.Next
+}
+
+func ListNodeMergeSort(head *ListNode) *ListNode {
+	if head == nil || head.Next == nil {
+		return head
+	}
+	// 获取中间的节点
+	mid := GetMid(head)
+	b := mid.Next
+	// 拆分链表
+	mid.Next = nil
+	// 递归调用
+	return ListNodeMerge(ListNodeMergeSort(head), ListNodeMergeSort(b))
+}

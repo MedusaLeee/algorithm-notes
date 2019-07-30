@@ -14,3 +14,21 @@ func TestMergeSort(t *testing.T) {
 	MergeSort(testArr, lo, hi)
 	t.Log(testArr)
 }
+
+// go test -v
+func TestListNodeMergeSort(t *testing.T) {
+	a := &ListNode{10, nil}
+	for i := 0; i <= 10; i++ {
+		t := &ListNode{i, nil}
+		t.Next = a
+		a = t
+	}
+	for h := a; h.Next != nil; h = h.Next {
+		fmt.Println(h.Val)
+	}
+	fmt.Println("--------")
+	res := ListNodeMergeSort(a)
+	for h := res; h.Next != nil; h = h.Next {
+		fmt.Println(h.Val)
+	}
+}
