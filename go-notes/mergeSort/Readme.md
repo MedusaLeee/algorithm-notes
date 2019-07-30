@@ -18,5 +18,9 @@
 
 ### 2.2.17链表排序
 
+[mergeSort_test.go](./mergeSort_test.go)
+
 ### 2.2.20间接排序
+[mergeSort_test.go](./mergeSort_test.go)
+
 https://github.com/YangXiaoHei/Algorithms/blob/master/Ch_2_2_MergeSort/Practise_2_2_20.java
