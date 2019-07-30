@@ -1,49 +1,41 @@
 package mergeSort
 
-import "fmt"
-
 func Merge(arr []int, lo int, mid int, hi int) {
-	leftSize := mid - lo
-	rightSize := hi - mid + 1
-	fmt.Println("leftSize", lo, mid, hi, leftSize)
-	fmt.Println("rightSize", lo, mid, hi, rightSize)
+	leftSize := mid - lo + 1
+	rightSize := hi - mid
 	left := make([]int, leftSize)
 	right := make([]int, rightSize)
-	i := 0
 	// 1. 填充left子数组
-	for i = lo; i < mid; i += 1 {
+	for i := 0; i < leftSize; i++ {
 		// left[i-lo] = arr[i]
-		left[i] = arr[i]
+		left[i] = arr[lo+i]
 	}
 	// 2. 填充right子数组
-	for i = mid; i <= hi; i += 1 {
-		right[i-mid] = arr[i]
+	for j := 0; j < rightSize; j++ {
+		right[j] = arr[mid+j+1]
 	}
-	fmt.Println(left)
-	fmt.Println(right)
 	// 合并到原数组
 	i, j, k := 0, 0, lo
-	for i < leftSize && j < rightSize {
+	for k <= hi && i < leftSize && j < rightSize {
 		// 如果 left 小于 right
 		if left[i] < right[j] {
-			// 如果左边小就把
+			// 如果左边小就把left i放到左边
 			arr[k] = left[i]
 			i++
-			k++
 		} else {
 			arr[k] = right[j]
 			j++
-			k++
 		}
+		k++
 	}
 	// 如果循环完了 i还小于right size的话就把全部的i填上去
-	for i < leftSize {
+	for i < leftSize && k <= hi {
 		arr[k] = left[i]
 		i++
 		k++
 	}
 	// 如果循环完了 i还小于right size的话就把全部的i填上去
-	for j < rightSize {
+	for j < rightSize && k <= hi {
 		arr[k] = right[j]
 		j++
 		k++
@@ -51,13 +43,10 @@ func Merge(arr []int, lo int, mid int, hi int) {
 }
 
 func MergeSort(arr []int, lo int, hi int) {
-	if hi-lo <= 1 {
-		return
+	if lo < hi {
+		mid := (lo + hi) / 2
+		MergeSort(arr, lo, mid)
+		MergeSort(arr, mid+1, hi)
+		Merge(arr, lo, mid, hi)
 	}
-	fmt.Println("33---", lo, hi)
-	mid := (lo + hi) / 2
-	fmt.Println("----", mid, arr)
-	MergeSort(arr, lo, mid)
-	MergeSort(arr, mid+1, hi)
-	Merge(arr, lo, mid-1, hi)
 }
