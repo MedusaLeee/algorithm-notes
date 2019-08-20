@@ -18,4 +18,16 @@ func TestHeapSort(t *testing.T) {
 	n3 := 6
 	HeapSort(tree3, n3)
 	t.Log(tree3)
+	maxPQ := &MaxPQ{heap: make([]int, 10, 10), n: 0}
+	maxPQ.Insert(3)
+	maxPQ.Insert(5)
+	maxPQ.Insert(8)
+	maxPQ.Insert(1)
+	maxPQ.Insert(6)
+	maxPQ.Insert(9)
+	t.Log("size1:", maxPQ.Size())
+	t.Log("heap1:", maxPQ.Heap())
+	maxPQ.DelMax()
+	t.Log("size2:", maxPQ.Size())
+	t.Log("heap2:", maxPQ.Heap())
 }
